@@ -26,7 +26,7 @@ jobs:
         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
         aws_bucket: ${{ secrets.AWS_S3_BUCKET }}
         source_dir: 'lib'
-        destination_dir: 'beach/test'
+        destination_dir: ${{ env.DEST_DIR }}
     # - name: PUSH
     #   uses: jakejarvis/s3-sync-action@master
     #   with:
