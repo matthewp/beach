@@ -16,6 +16,8 @@ jobs:
       run: |
         echo "RELEASE VERSION:"
         echo $RELEASE_VERSION
+        echo "ANOTHER:"
+        echo ${{ github.event.release.tag_name }}
     # - uses: jakejarvis/s3-sync-action@master
     #   with:
     #     args: --acl public-read --follow-symlinks --delete
