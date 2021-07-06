@@ -17,7 +17,7 @@ jobs:
         id=$(echo "$RELEASE_TAG" | cut -dv -f2)
         echo "RELEASE_VERSION=$id" >> $GITHUB_ENV
     - name: Set folder
-      run |
+      run: |
         folder=$(echo "beach/$RELEASE_VERSION")
         echo "RELEASE_FOLDER=$folder" >> $GITHUB_ENV
     - name: PUSH
