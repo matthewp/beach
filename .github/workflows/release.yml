@@ -1,6 +1,8 @@
 name: Deploy version
 
-on: [tags]
+on:
+  push:
+    tags: v*.*.*
 
 jobs:
   deploy:
