@@ -19,7 +19,7 @@ jobs:
     - name: Set folder
       run: |
         folder=$(echo "beach/$RELEASE_VERSION")
-        echo "RELEASE_FOLDER=$folder" >> $GITHUB_ENV
+        echo "DEST_DIR=$folder" >> $GITHUB_ENV
     - name: PUSH
       uses: jakejarvis/s3-sync-action@master
       with:
@@ -30,4 +30,3 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'us-east1'
         SOURCE_DIR: 'lib'
-        DEST_DIR: "$RELEASE_FOLDER"
