@@ -1,14 +1,6 @@
 import { assertEquals } from './deps.js';
 import { callPage } from '../lib/route.js';
 
-async function readBody(response) {
-  let body = '';
-  for await(let chunk of response.body) {
-    body += chunk;
-  }
-  return body;
-}
-
 Deno.test('callPage can take an async generator', async () => {
   const response = await callPage(async function * () {
     yield '<html>';
@@ -18,7 +10,7 @@ Deno.test('callPage can take an async generator', async () => {
     yield '</div>';
   });
 
-  const text = await readBody(response);
+  const text = await response.text();
   assertEquals(text, '<html><body><div>test</div>');
 });
 
@@ -31,7 +23,7 @@ Deno.test('callPage can take a generate', async () => {
     yield '</div>';
   });
 
-  const text = await readBody(response);
+  const text = await response.text();
   assertEquals(text, '<html><body><div>test</div>');
 });
 
@@ -47,7 +39,7 @@ Deno.test('callPage can take a function that returns an async generator', async 
     return render();
   });
 
-  const text = await readBody(response);
+  const text = await response.text();
   assertEquals(text, '<html><body><div>test</div>');
 });
 
