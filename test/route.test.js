@@ -1,4 +1,4 @@
-import { assertEquals } from 'https://deno.land/std@0.100.0/testing/asserts.ts';
+import { assertEquals } from './deps.js';
 import { callPage } from '../lib/route.js';
 
 async function readBody(response) {
@@ -50,3 +50,26 @@ Deno.test('callPage can take a function that returns an async generator', async 
   const text = await readBody(response);
   assertEquals(text, '<html><body><div>test</div>');
 });
+
+Deno.test({
+  name: 'Streaming integration test',
+  ignore: true, // Turn this on to see it go.
+  async fn() {
+    const wait = () => new Promise(resolve => setTimeout(resolve, 500));
+    const render = async function * () {
+      yield '<html><body><div><ul>';
+      await wait();
+      for(let i = 0; i < 10; i++) {
+        yield `<li>${i}</li>`;
+        await wait();
+      }
+      yield '</ul></div>';
+    };
+    const response = await callPage(async () => {
+      return render();
+    });
+    for await(let chunk of response.body) {
+      console.log(chunk);
+    }
+  }
+})
