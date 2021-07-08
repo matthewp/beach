@@ -60,8 +60,9 @@ Deno.test({
     const response = await callPage(async () => {
       return render();
     });
+    const decoder = new TextDecoder();
     for await(let chunk of response.body) {
-      console.log(chunk);
+      console.log(decoder.decode(chunk));
     }
   }
 })

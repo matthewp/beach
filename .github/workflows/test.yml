@@ -13,5 +13,4 @@ jobs:
       with:
         deno-version: v1.x
     - name: Run the tests
-      run: |
-        deno test
+      run: deno test
