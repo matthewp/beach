@@ -1,14 +1,7 @@
 import '../lib/shim.js';
 import { assertEquals } from './deps.js';
 import { html } from '../lib/render.js';
-
-async function consume(iter) {
-  let body = '';
-  for await(let chunk of iter) {
-    body += chunk;
-  }
-  return body;
-}
+import { consume } from './helpers.js';
 
 Deno.test('html handles promises', async () => {
   const iter = html`
