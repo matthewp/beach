@@ -1,6 +1,6 @@
 import '../lib/shim.js';
 import { assertEquals } from './deps.js';
-import { html } from '../lib/render.js';
+import { html, render } from '../lib/render.js';
 import { consume } from './helpers.js';
 
 Deno.test('html handles promises', async () => {
@@ -21,15 +21,21 @@ Deno.test('html handles async iterators', async () => {
       yield * callback(value);
     }
   }
-  const iter = html`
+  let iter = html`
     <ul>
     ${each(getValues(), val => {
       return html`<li>${val}</li>`;
     })}
   </ul>
   `;
-  const out = await consume(iter);
+  let out = await consume(iter);
   assertEquals(out.trim(), `<ul>
     <li>22</li><li>23</li>
   </ul>`);
+});
+
+Deno.test('render handles comments', async () => {
+  let iter = render`<div><!-- some comment --></div>`;
+  let out = await consume(iter);
+  assertEquals(out, `<div><!-- some comment --></div>`);
 });
