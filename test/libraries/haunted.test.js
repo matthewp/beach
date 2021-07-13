@@ -2,8 +2,8 @@
 
 import '../../lib/shim.js?global';
 import { customElements } from '../../lib/dom.js';
-import { html } from 'https://unpkg.com/lit-html@1.4.1/lit-html.js';
-import { component } from 'https://unpkg.com/haunted@4.8.2/haunted.js';
+import { html } from 'https://cdn.skypack.dev/lit-html@1.4.1'
+import { component } from 'https://cdn.skypack.dev/haunted@4.8.2';
 import { render } from '../../lib/mod.js';
 import { consume } from '../helpers.js';
 import { assertStringIncludes } from '../deps.js';
