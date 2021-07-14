@@ -39,3 +39,13 @@ Deno.test('render handles comments', async () => {
   let out = await consume(iter);
   assertEquals(out, `<div><!-- some comment --></div>`);
 });
+
+Deno.test('void elements render correctly', async () => {
+  let iter = render`<meta name="author" content="Matthew Phillips">`;
+  let out = await consume(iter);
+  assertEquals(out, `<meta name="author" content="Matthew Phillips">`);
+
+  iter = render`<img src="http://example.com/penguin.png" />`;
+  out = await consume(iter);
+  assertEquals(out, `<img src="http://example.com/penguin.png">`);
+});
