@@ -7,7 +7,7 @@ A little Deno server, with builtin support for server rendering custom elements.
 Including an element:
 
 ```js
-import { HTMLElement, customElements } 'https://cdn.spooky.click/beach/0.1.6/dom.js';
+import { HTMLElement, customElements } from 'https://cdn.spooky.click/beach/0.1.6/dom.js';
 
 class MyElement extends HTMLElement {
   // ...
