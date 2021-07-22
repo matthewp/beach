@@ -1,11 +1,13 @@
 # 🏖️ Beach
 
+A little Deno server, with builtin support for server rendering custom elements.
+
 ## Usage
 
 Including an element:
 
 ```js
-import { HTMLElement, customElements } 'https://cdn.spooky.click/beach/0.1.6/shim.js';
+import { HTMLElement, customElements } 'https://cdn.spooky.click/beach/0.1.6/dom.js';
 
 class MyElement extends HTMLElement {
   // ...
