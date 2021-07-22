@@ -1,6 +1,6 @@
 import '../../lib/shim.js?global';
 import { LitElement, html as litHtml } from 'https://cdn.skypack.dev/lit@2.0.0-rc.2';
-import { html, render } from '../../lib/mod.js';
+import { raw, html } from '../../lib/mod.js';
 import { consume } from '../helpers.js';
 import { assertStringIncludes, assertEquals, parseHTML } from '../deps.js';
 import { customElements } from '../../lib/dom.js';
@@ -15,9 +15,9 @@ Deno.test('Can render a lit app', async () => {
   }
   customElements.define('my-lit-test', MyElement);
 
-  let iter = html`
+  let iter = raw`
     <div id="outer">
-      ${render`<my-lit-test></my-lit-test>`}
+      ${html`<my-lit-test></my-lit-test>`}
     </div>
   `;
 
@@ -32,8 +32,8 @@ Deno.test('Can render lit-element attributes', async () => {
     }
   }
   customElements.define('lit-element-attrs', MyElement);
-  let iter = html`
-    <div>${render`<lit-element-attrs foo="bar" two="three"></lit-element-attrs>`}</div>
+  let iter = raw`
+    <div>${html`<lit-element-attrs foo="bar" two="three"></lit-element-attrs>`}</div>
   `;
   let out = await consume(iter);
   let { document } = parseHTML(out);

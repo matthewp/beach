@@ -1,6 +1,6 @@
 import '../../lib/shim.js?global';
 import { createApp } from 'https://unpkg.com/petite-vue@0.2.3/dist/petite-vue.es.js';
-import { render } from '../../lib/mod.js';
+import { html } from '../../lib/mod.js';
 import { consume } from '../helpers.js';
 import { assertStringIncludes } from '../deps.js';
 
@@ -43,7 +43,7 @@ Deno.test('petite-vue elements render', async () => {
 
   customElements.define('petite-vue-element', MyElement);
 
-  let iter = render`<petite-vue-element></petite-vue-element>`;
+  let iter = html`<petite-vue-element></petite-vue-element>`;
   let out = await consume(iter);
 
   assertStringIncludes(out, '<p>0</p>');

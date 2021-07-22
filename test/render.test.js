@@ -1,11 +1,11 @@
 import '../lib/shim.js';
 import { assertEquals, assertStringIncludes } from './deps.js';
-import { html, render } from '../lib/render.js';
+import { raw, html } from '../lib/render.js';
 import { HTMLElement, customElements, document } from '../lib/dom.js';
 import { consume } from './helpers.js';
 
 Deno.test('html handles promises', async () => {
-  const iter = html`
+  const iter = raw`
     <div>${Promise.resolve(22)}</div>
   `;
   const out = await consume(iter);
@@ -22,10 +22,10 @@ Deno.test('html handles async iterators', async () => {
       yield * callback(value);
     }
   }
-  let iter = html`
+  let iter = raw`
     <ul>
     ${each(getValues(), val => {
-      return html`<li>${val}</li>`;
+      return raw`<li>${val}</li>`;
     })}
   </ul>
   `;
@@ -36,23 +36,23 @@ Deno.test('html handles async iterators', async () => {
 });
 
 Deno.test('render handles comments', async () => {
-  let iter = render`<div><!-- some comment --></div>`;
+  let iter = html`<div><!-- some comment --></div>`;
   let out = await consume(iter);
   assertEquals(out, `<div><!-- some comment --></div>`);
 });
 
 Deno.test('void elements render correctly', async () => {
-  let iter = render`<meta name="author" content="Matthew Phillips">`;
+  let iter = html`<meta name="author" content="Matthew Phillips">`;
   let out = await consume(iter);
   assertEquals(out, `<meta name="author" content="Matthew Phillips">`);
 
-  iter = render`<img src="http://example.com/penguin.png" />`;
+  iter = html`<img src="http://example.com/penguin.png" />`;
   out = await consume(iter);
   assertEquals(out, `<img src="http://example.com/penguin.png">`);
 });
 
 Deno.test('Can render async values in HTML', async () => {
-  let iter = render`<div>One ${Promise.resolve(1)}<span>Two ${Promise.resolve(2)}</span></div>`;
+  let iter = html`<div>One ${Promise.resolve(1)}<span>Two ${Promise.resolve(2)}</span></div>`;
   let out = await consume(iter);
   assertEquals(out, `<div>One 1<span>Two 2</span></div>`);
 });
@@ -71,7 +71,7 @@ Deno.test('Can render async values in components', async () => {
     }
   }
   customElements.define('element-with-async-values', MyElement);
-  let iter = render`<element-with-async-values><div id="inner">${Promise.resolve(2)}</div><div id="second">${33}</div></element-with-async-values>`;
+  let iter = html`<element-with-async-values><div id="inner">${Promise.resolve(2)}</div><div id="second">${33}</div></element-with-async-values>`;
   let out = await consume(iter);
   assertStringIncludes(out, '<h1>My App</h1>', 'shadow rendered');
   assertStringIncludes(out, '<div id="inner">2</div>', 'light rendered');
@@ -92,15 +92,15 @@ Deno.test('Can provide attributes to custom elements', async () => {
     }
   }
   customElements.define('element-with-attrs', MyElement);
-  let iter = render`<element-with-attrs name="Matthew"></element-with-attrs>`;
+  let iter = html`<element-with-attrs name="Matthew"></element-with-attrs>`;
   let out = await consume(iter);
   assertStringIncludes(out, `<div>Matthew</div>`);
 
-  iter = render`<element-with-attrs name="${"Matthew"}"></element-with-attrs>`;
+  iter = html`<element-with-attrs name="${"Matthew"}"></element-with-attrs>`;
   out = await consume(iter);
   assertStringIncludes(out, `<div>Matthew</div>`);
 
-  iter = render`<element-with-attrs name="${Promise.resolve("Matthew")}"></element-with-attrs>`;
+  iter = html`<element-with-attrs name="${Promise.resolve("Matthew")}"></element-with-attrs>`;
   out = await consume(iter);
   assertStringIncludes(out, `<div>Matthew</div>`);
 });
@@ -119,7 +119,7 @@ Deno.test('Renders a mix of HTML and custom element', async () => {
   }
   customElements.define('html-wc-mix', RandomElement);
   let title = 'Homepage';
-  let iter = render`<html><head><title>My page</title><body><h1>Page ${title}</h1><html-wc-mix></html-wc-mix><section id="after"><h1>${Promise.resolve('after')}</h1></section></body>`;
+  let iter = html`<html><head><title>My page</title><body><h1>Page ${title}</h1><html-wc-mix></html-wc-mix><section id="after"><h1>${Promise.resolve('after')}</h1></section></body>`;
   let out = await consume(iter);
 
   assertStringIncludes(out, `<h1>Page Homepage</h1>`, 'page title rendered');
@@ -141,7 +141,7 @@ Deno.test('Renders boolean attributes', async () => {
     }
   }
   customElements.define('boolean-attr-el', BooleanElement);
-  let iter = render`<div outer><boolean-attr-el works></boolean-attr-el></div>`;
+  let iter = html`<div outer><boolean-attr-el works></boolean-attr-el></div>`;
   let out = await consume(iter);
   assertStringIncludes(out, `<div outer>`, 'outer boolean attribute');
   assertStringIncludes(out, `<boolean-attr-el works>`, 'rendered boolean with no value');
