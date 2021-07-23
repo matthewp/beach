@@ -1,5 +1,5 @@
 import '../lib/shim.js';
-import { assertEquals, assertStringIncludes } from './deps.js';
+import { assertEquals, assertStringIncludes, assertNotMatch } from './deps.js';
 import { raw, html } from '../lib/render.js';
 import { HTMLElement, customElements, document } from '../lib/dom.js';
 import { consume } from './helpers.js';
@@ -146,4 +146,18 @@ Deno.test('Renders boolean attributes', async () => {
   assertStringIncludes(out, `<div outer>`, 'outer boolean attribute');
   assertStringIncludes(out, `<boolean-attr-el works>`, 'rendered boolean with no value');
   assertStringIncludes(out, `<div id="works">true</div>`, 'shadow rendered');
+});
+
+Deno.test('Including a doctype works', async () => {
+  let iter = html`
+    <!doctype html>
+    <html lang="en">
+    <title>My page</title>
+    <h1>My page</h1>
+    <h2>User: ${Promise.resolve('Wilbur')}</h2>
+  `;
+  let out = await consume(iter);
+  assertStringIncludes(out, `<!doctype html>`, 'Doctype is included');
+  assertStringIncludes(out, `<h2>User: Wilbur</h2>`, 'Rendered promise content');
+  assertNotMatch(out, /<\/html>/, 'No closing tag for html');
 });
