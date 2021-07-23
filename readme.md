@@ -19,7 +19,7 @@ Any custom element within your template will have its `connectedCallback` called
 The `html` function returns an [async iterator](https://javascript.info/async-iterators-generators), allowing streaming of HTML.
 
 ```js
-import { html } from 'https://cdn.spooky.click/beach/0.2.0/dom.js';
+import { html } from 'https://cdn.spooky.click/beach/0.2.0/mod.js';
 
 const userPromise = getUserById(2);
 
