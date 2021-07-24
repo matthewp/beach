@@ -21,18 +21,38 @@ The `html` function returns an [async iterator](https://javascript.info/async-it
 ```js
 import { html } from 'https://cdn.spooky.click/beach/0.2.0/mod.js';
 
-const userPromise = getUserById(2);
+const usernamePromise = getUserById(2).then(user => user.name);
 
 const iterator = html`
   <!doctype html>
   <html lang="en">
   <title>My Page!</title>
 
-  <user-profile .user=${userPromise}></user-promise>
+  <user-profile .userName=${usernamePromise}></user-promise>
 
   <my-app></my-app>
 `;
 ```
+
+### Syntax
+
+Beach follows the same tagged template literal syntax as libraries like uhtml and Lit. Since Beach is concerned only with rendering HTML there are fewer types of bindings.
+
+You can pass any value to render __text__ or __attributes__. If the value is a promise Beach will await the value.
+
+#### Properties
+
+For custom elements you can pass a property using the dot syntax, for example:
+
+```js
+let iterator = html`
+  <user-profile .name="Wilbur"></user-profile>
+`;
+```
+
+This will pass the value to the custom element as a property.
+
+> *Note*: Property bindings do not work for built-in elements. This feature might come in the future.
 
 ### Authoring custom elements
 
