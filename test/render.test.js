@@ -161,3 +161,25 @@ Deno.test('Including a doctype works', async () => {
   assertStringIncludes(out, `<h2>User: Wilbur</h2>`, 'Rendered promise content');
   assertNotMatch(out, /<\/html>/, 'No closing tag for html');
 });
+
+Deno.test('Props can be passed with dot syntax', async () => {
+  class MyPropEl extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+    }
+    connectedCallback() {
+      let name = this.name;
+      let div = document.createElement('div');
+      div.id = "name";
+      div.textContent = name;
+      this.shadowRoot.append(div);
+    }
+  }
+  customElements.define('my-prop-el', MyPropEl);
+  let iter = html`<my-prop-el .name="${'Wilbur'}" class="dark"></my-prop-el>`;
+  let out = await consume(iter);
+
+  assertStringIncludes(out, `<my-prop-el class="dark">`, 'Start tag no prop attr');
+  assertStringIncludes(out, `<div id="name">Wilbur</div>`, 'Content from the prop');
+});
