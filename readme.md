@@ -19,7 +19,7 @@ Any custom element within your template will have its `connectedCallback` called
 The `html` function returns an [async iterator](https://javascript.info/async-iterators-generators), allowing streaming of HTML.
 
 ```js
-import { html } from 'https://cdn.spooky.click/beach/0.4.0/mod.js';
+import { html } from 'https://cdn.spooky.click/beach/0.4.1/mod.js';
 
 const usernamePromise = getUserById(2).then(user => user.name);
 
@@ -57,7 +57,7 @@ This will pass the value to the custom element as a property.
 ### Authoring custom elements
 
 ```js
-import { HTMLElement, customElements } from 'https://cdn.spooky.click/beach/0.4.0/dom.js';
+import { HTMLElement, customElements } from 'https://cdn.spooky.click/beach/0.4.1/dom.js';
 
 class MyElement extends HTMLElement {
   // ...
@@ -69,8 +69,8 @@ customElements.define('my-element', MyElement);
 ### Starting a server
 
 ```js
-import 'https://cdn.spooky.click/beach/0.4.0/shim.js';
-import { startServer, route } from 'https://cdn.spooky.click/beach/0.4.0/mod.js';
+import 'https://cdn.spooky.click/beach/0.4.1/shim.js';
+import { startServer, route } from 'https://cdn.spooky.click/beach/0.4.1/mod.js';
 
 import * as index from './pages/index.js';
 
