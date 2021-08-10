@@ -8,7 +8,7 @@ Deno.test('callPage can take an async generator', async () => {
     yield '<div>';
     yield 'test'
     yield '</div>';
-  });
+  }, {}, {});
 
   const text = await response.text();
   assertEquals(text, '<html><body><div>test</div>');
@@ -21,7 +21,7 @@ Deno.test('callPage can take a generate', async () => {
     yield '<div>';
     yield 'test'
     yield '</div>';
-  });
+  }, {}, {});
 
   const text = await response.text();
   assertEquals(text, '<html><body><div>test</div>');
@@ -37,7 +37,7 @@ Deno.test('callPage can take a function that returns an async generator', async 
   };
   const response = await callPage(async () => {
     return render();
-  });
+  }, {}, {});
 
   const text = await response.text();
   assertEquals(text, '<html><body><div>test</div>');
@@ -59,7 +59,7 @@ Deno.test({
     };
     const response = await callPage(async () => {
       return render();
-    });
+    }, {}, {});
     const decoder = new TextDecoder();
     for await(let chunk of response.body) {
       console.log(decoder.decode(chunk));
