@@ -1,0 +1,37 @@
+name: Deploy Site
+
+on:
+  push:
+    paths:
+    - 'docs/**'
+    - 'site/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Deno
+      uses: denoland/setup-deno@v1
+      with:
+        deno-version: v1.x
+    - name: Build Site
+      run: ./scripts/build-site.sh
+    - name: Sync Bucket
+    - uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --delete
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        DEST_DIR: 'beach'
+        SOURCE_DIR: 'site/_dist'      # optional: defaults to entire repository
+    - name: Invalidate CDN
+      uses: chetan/invalidate-cloudfront-action@master
+      env:
+        DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+        PATHS: '/beach/*'
+        AWS_REGION: 'us-east-1'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

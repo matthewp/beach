@@ -1,11 +1,11 @@
-name: Deploy version
+name: Publish version
 
 on:
   push:
     tags: v*.*.*
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository code
