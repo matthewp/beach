@@ -93,3 +93,5 @@ async function notFound({ html, request }) {
 let app = new Beach();
 beach.route.notFound(notFound);
 ```
+
+test
