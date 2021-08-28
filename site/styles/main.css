@@ -1,0 +1,24 @@
+
+main {
+  text-align: center;
+}
+
+main > h1 {
+  font-size: 7rem;
+}
+
+main > h2 {
+  font-size: 2rem;
+}
+
+.toc {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc a, .toc a:visited {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-black);
+}

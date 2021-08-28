@@ -1,0 +1,126 @@
+/**
+* Palette: https://www.color-hex.com/color-palette/45581
+* Gradient: https://cssgradient.io/
+* Media queries: https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --color-bright-torquoise: #0bd3d3;
+  --color-lavender-rose: #f890e7;
+  --color-white: #ffffff;
+  --color-alto: #d0d0d0;
+  --color-black: #000000;
+  --color-opaque-black: rgba(0, 0, 0, .6);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(315deg, rgba(11,211,211,1) 40%, rgba(248,144,231,1) 100%);
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+}
+
+body > header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
+}
+
+.link, a:not(.toc-link), a:not(.toc-link):visited {
+  color: var(--color-lavender-rose);
+  background: var(--color-opaque-black);
+  border-radius: 6px;
+  padding: .2rem .3rem;
+}
+
+.beach-logo {
+  text-decoration: none;
+  display: block;
+  width: max-content;
+  font-size: 3rem;
+  font-weight: 400;
+  padding: .5rem .7rem !important;
+}
+
+.doc-content, .container {
+  padding-left: 2rem;
+  padding-right: 2rem;;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-device-width: 801px)  {
+  .doc-content, .container {
+    padding-left: 20%;
+    padding-right: 20%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .beach-logo {
+    font-size: 2rem;
+  }
+}
+
+.doc-content > h1 {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+.doc-content p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.doc-content code:not([class^="language-js"]), .doc-content pre {
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  background: rgba(118, 119, 119, 0.4);
+  font-size: 1rem;
+}
+
+.doc-content code:not([class^="language-js"]) {
+  padding: .2rem;
+}
+
+.doc-content h2 {
+  margin-top: 2.2rem;
+}
+
+body > footer {
+  margin-top: 5rem;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+body > footer > hr {
+  border: none;
+  border-top: 1px solid var(--color-black);
+}
+
+body > footer .acknowledgement {
+  padding: 1rem 0;
+  font-size: 85%;
+}
+
+body > footer .acknowledgement a,
+body > footer .acknowledgement a:visited {
+  padding: .2rem;
+  vertical-align: middle;
+}
+
+body > footer .acknowledgement .sunglasses {
+  font-size: 170%;
+  vertical-align: middle;
+}

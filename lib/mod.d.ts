@@ -4,13 +4,6 @@ export {
   document
 } from './dom.js';
 
-export {
-  addEventListener,
-  html,
-  route,
-  startServer
-} from './global.js';
-
 export { Beach } from './beach.js';
 
 export {

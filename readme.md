@@ -12,26 +12,26 @@ With Beach you get:
 
 ### Rendering HTML
 
-Beach exports an `html` function that works a lot like that of [uhtml](https://github.com/WebReflection/uhtml) and [Lit](https://lit.dev/). You give it HTML and can inject values where needed.
+Beach includes an `html` function that works a lot like that of [uhtml](https://github.com/WebReflection/uhtml) and [Lit](https://lit.dev/). You give it HTML and can inject values where needed.
 
 Any custom element within your template will have its `connectedCallback` called and the `shadowRoot` will then be serialized inside of `<template shadowroot="open">` tags.
 
-The `html` function returns an [async iterator](https://javascript.info/async-iterators-generators), allowing streaming of HTML.
+The `html` function returns an [async iterator](https://javascript.info/async-iterators-generators), allowing streaming of HTML. This function is passed into routes, no need to import separately.
 
 ```js
-import { html } from 'https://cdn.spooky.click/beach/0.5.0/mod.js';
+export default function({ html }) {
+  let usernamePromise = getUserById(2).then(user => user.name);
 
-const usernamePromise = getUserById(2).then(user => user.name);
+  return html`
+    <!doctype html>
+    <html lang="en">
+    <title>My Page!</title>
 
-const iterator = html`
-  <!doctype html>
-  <html lang="en">
-  <title>My Page!</title>
+    <user-profile .username=${usernamePromise}></user-promise>
 
-  <user-profile .userName=${usernamePromise}></user-promise>
-
-  <my-app></my-app>
-`;
+    <my-app></my-app>
+  `;
+}
 ```
 
 ### Syntax
@@ -68,14 +68,16 @@ customElements.define('my-element', MyElement);
 
 ### Starting a server
 
+Create an instance of a `Beach`, add some routes and start the server.
+
 ```js
 import 'https://cdn.spooky.click/beach/0.5.0/shim.js';
-import { startServer, route } from 'https://cdn.spooky.click/beach/0.5.0/mod.js';
-
+import { Beach } from 'https://cdn.spooky.click/beach/0.5.0/mod.js';
 import * as index from './pages/index.js';
 
-route.page('/', index);
+const { route, startServer } = new Beach();
 
+route.page('/', index);
 route.static('/styles', new URL('./styles/', import.meta.url));
 
 startServer();
