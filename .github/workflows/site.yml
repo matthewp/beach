@@ -18,7 +18,7 @@ jobs:
     - name: Build Site
       run: ./scripts/build-site.sh
     - name: Sync Bucket
-    - uses: jakejarvis/s3-sync-action@master
+      uses: jakejarvis/s3-sync-action@master
       with:
         args: --delete
       env:
