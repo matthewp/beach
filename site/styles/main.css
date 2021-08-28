@@ -4,11 +4,11 @@ main {
 }
 
 main > h1 {
-  font-size: 7rem;
+  font-size: 9rem;
 }
 
 main > h2 {
-  font-size: 2rem;
+  font-size: 4rem;
 }
 
 .toc {
@@ -18,7 +18,22 @@ main > h2 {
 }
 
 .toc a, .toc a:visited {
-  font-size: 1.5rem;
+  font-size: 3rem;
   font-weight: 500;
   color: var(--color-black);
+}
+
+/* Non-mobile */
+@media (min-device-width: 801px)  {
+  main > h1 {
+    font-size: 7rem;
+  }
+
+  main > h2 {
+    font-size: 2rem;
+  }
+
+  .toc a, .toc a:visited {
+    font-size: 1.5rem;
+  }
 }

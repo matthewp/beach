@@ -57,19 +57,6 @@ body > header {
   margin-right: auto;
 }
 
-@media (min-device-width: 801px)  {
-  .doc-content, .container {
-    padding-left: 20%;
-    padding-right: 20%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .beach-logo {
-    font-size: 2rem;
-  }
-}
-
 .doc-content > h1 {
   text-align: center;
   font-size: 4rem;
@@ -77,17 +64,21 @@ body > header {
 }
 
 .doc-content p {
-  font-size: 1.125rem;
+  font-size: 1.75rem;
   line-height: 1.7;
 }
 
-.doc-content code:not([class^="language-js"]), .doc-content pre {
+.doc-content code:not([class^="language-"]), .doc-content pre {
   font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
   background: rgba(118, 119, 119, 0.4);
   font-size: 1rem;
 }
 
-.doc-content code:not([class^="language-js"]) {
+.doc-content code[class^="language-"] {
+  font-size: 2rem;
+}
+
+.doc-content code:not([class^="language-"]) {
   padding: .2rem;
 }
 
@@ -111,7 +102,7 @@ body > footer > hr {
 
 body > footer .acknowledgement {
   padding: 1rem 0;
-  font-size: 85%;
+  font-size: 1.8rem;
 }
 
 body > footer .acknowledgement a,
@@ -123,4 +114,34 @@ body > footer .acknowledgement a:visited {
 body > footer .acknowledgement .sunglasses {
   font-size: 170%;
   vertical-align: middle;
+  margin: 0 1rem;
+}
+
+@media (min-device-width: 801px)  {
+  .doc-content, .container {
+    padding-left: 20%;
+    padding-right: 20%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .beach-logo {
+    font-size: 2rem;
+  }
+
+  .doc-content p {
+    font-size: 1.125rem;
+  }
+
+  .doc-content code[class^="language-"] {
+    font-size: 1rem;
+  }
+
+  body > footer .acknowledgement {
+    font-size: 85%;
+  }
+
+  body > footer .acknowledgement .sunglasses {
+    margin: inherit;
+  }
 }
