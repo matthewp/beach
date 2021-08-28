@@ -14,9 +14,12 @@ export default function(ctx) {
       <h1>🏖 Beach</h1>
       <h2>Table of Contents</h2>
 
-      <ul class="toc">
-        <li><a class="toc-link" href="./routing/">Routing</a></li>
-      </ul>
+      <div class="toc-container">
+        <ul class="toc">
+          <li><a class="toc-link" href="./routing/">Routing</a></li>
+          <li><a class="toc-link" href="./testing/">Testing</a></li>
+        </ul>
+      </div>
     </main>
     
     ${footer(ctx)}

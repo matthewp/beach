@@ -11,8 +11,14 @@ main > h2 {
   font-size: 4rem;
 }
 
+.toc-container {
+  display: grid;
+  justify-content: center;
+}
+
 .toc {
-  list-style-type: none;
+  list-style: none;
+  max-width: max-content;
   margin: 0;
   padding: 0;
 }
@@ -21,6 +27,21 @@ main > h2 {
   font-size: 3rem;
   font-weight: 500;
   color: var(--color-black);
+}
+
+.toc li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.toc li::before {
+  content: '▪';
+  font-size: 2.5rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
 }
 
 /* Non-mobile */
@@ -35,5 +56,9 @@ main > h2 {
 
   .toc a, .toc a:visited {
     font-size: 1.5rem;
+  }
+
+  .toc li {
+    margin-bottom: unset;
   }
 }
