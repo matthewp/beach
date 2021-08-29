@@ -5,7 +5,7 @@ layout: ../site/layout.js
 
 # Testing
 
-Beach is built with testing as a primary concern. You can create instances of your application, handle a request, and check the response using familiar APIs.
+__Beach__ is built with testing as a primary concern. You can create instances of your application, handle a request, and check the response using familiar APIs.
 
 The best way to consolidate your app into a testable unit is to make it into a class. We recommend extending `Beach` and defining your routes in the constructor:
 

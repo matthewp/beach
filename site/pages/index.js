@@ -16,6 +16,7 @@ export default function(ctx) {
 
       <div class="toc-container">
         <ul class="toc">
+          <li><a class="toc-link" href="./overview/">Overview</a></li>
           <li><a class="toc-link" href="./routing/">Routing</a></li>
           <li><a class="toc-link" href="./testing/">Testing</a></li>
         </ul>
