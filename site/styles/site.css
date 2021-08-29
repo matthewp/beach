@@ -86,6 +86,10 @@ body > header {
   margin-top: 2.2rem;
 }
 
+.doc-content ul {
+  line-height: 1.75;
+}
+
 body > footer {
   margin-top: 5rem;
   padding-left: 10%;
