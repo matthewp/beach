@@ -27,7 +27,7 @@ fi
 
 deno run --allow-read --allow-write --allow-run \
   https://cdn.spooky.click/spooky-release/0.0.6/cmd.js \
-  --pkg name
-  --version "$version"
-  --files **/*.md
+  --pkg name \
+  --version "$version" \
+  --files **/*.md \
   --files site/pages/*.js
