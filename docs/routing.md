@@ -53,7 +53,7 @@ Beach also comes with a lower-level API for matching any given route. `beach.rou
 If you want to create a route for a non-GET method, use `match()`.
 
 ```js
-import { Beach, RouteMatch } from 'https://cdn.spooky.click/beach/0.5.0/mod.js';
+import { Beach, RouteMatch } from 'https://cdn.spooky.click/beach/0.6.0/mod.js';
 
 async function saveTacos({ request }) {
   // TODO save the Tacos in a DB maybe?
@@ -69,7 +69,7 @@ app.route.match(new RouteMatch({
 To match a pattern instead, use the `pattern`: property. This is based on the syntax of the [URLPattern proposal](https://web.dev/urlpattern/).
 
 ```js
-import { Beach, RouteMatch } from 'https://cdn.spooky.click/beach/0.5.0/mod.js';
+import { Beach, RouteMatch } from 'https://cdn.spooky.click/beach/0.6.0/mod.js';
 import * as user from './pages/user.js';
 
 let app = new Beach();
