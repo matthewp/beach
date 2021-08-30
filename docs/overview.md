@@ -17,7 +17,7 @@ __Beach__ is a metaframework for web component projects that runs on [Deno](http
 Beach's main export is the `Beach` class. You can create an instance of it and start adding routes:
 
 ```js
-import { Beach } from 'https://cdn.spooky.click/beach/0.6.0/mod.js';
+import { Beach } from 'https://cdn.spooky.click/beach/0.6.1/mod.js';
 import * as welcome from './pages/welcome.js';
 
 let beach = new Beach();
@@ -29,7 +29,7 @@ Since Beach has a big emphasis on [testing](../testing/) we instead recommend *e
 __app.js__
 
 ```js
-import { Beach } from 'https://cdn.spooky.click/beach/0.6.0/mod.js';
+import { Beach } from 'https://cdn.spooky.click/beach/0.6.1/mod.js';
 import * as welcome from './pages/welcome.js';
 
 export class App extends Beach {
