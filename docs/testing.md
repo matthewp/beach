@@ -12,7 +12,7 @@ The best way to consolidate your app into a testable unit is to make it into a c
 __app.js__
 
 ```js
-import { Beach } from 'https://cdn.spooky.click/beach/0.6.1/mod.js';
+import { Beach } from 'https://cdn.spooky.click/beach/0.6.2/mod.js';
 import * as newsPage from './pages/news.js';
 
 export class App extends Beach {
