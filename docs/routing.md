@@ -66,17 +66,26 @@ app.route.match(new RouteMatch({
 }), saveTacos);
 ```
 
-To match a pattern instead, use the `pattern`: property. This is based on the syntax of the [URLPattern proposal](https://web.dev/urlpattern/).
+To match a pattern instead, use the `pattern`: property. This is based on the syntax of the [URLPattern proposal](https://web.dev/urlpattern/). You can use this to match patterns for dynamic routes. Here we are implementing a page to show a user page based on the user's database id.
 
 ```js
 import { Beach, RouteMatch } from 'https://cdn.spooky.click/beach/0.6.1/mod.js';
-import * as user from './pages/user.js';
+
+async function userPage({ html, params }) {
+  return html`
+    <!doctype html>
+    <html lang="en">
+    <title>User page</title>
+
+    <h1>Welcome user ${params.id}</h1>
+  `;
+}
 
 let app = new Beach();
 app.route.match(new RouteMatch({
-  'get',
+  method: 'GET',
   pattern: '/users/:id'
-}), user);
+}), userPage);
 ```
 
 ## Not Found Page
