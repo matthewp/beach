@@ -12,6 +12,8 @@ Beach's routing is handled through the `route` object on the Beach object. With 
 In Beach a page is a function that returns HTML from the `html` tagged template literal. Using the `beach.route.page()` method to map a path to a page.
 
 ```js
+import { Beach } from 'https://cdn.spooky.click/beach/0.6.4/mod.js';
+
 async function about() {
   return html`
     <!doctype html>
@@ -29,6 +31,8 @@ app.route.page('/about', about);
 With Beach you can also use any Markdown file as a page. Use the `markdownPage()` function to point to a markdown file.
 
 ```js
+import { Beach, markdownPage } from 'https://cdn.spooky.click/beach/0.6.4/mod.js';
+
 let app = new Beach();
 app.route.page('/routing/', markdownPage(
   new URL('../docs/routing.md', import.meta.url)
@@ -40,6 +44,8 @@ app.route.page('/routing/', markdownPage(
 To serve static assets from a path, use the `beach.route.static()` method to map a path to a folder.
 
 ```js
+import { Beach } from 'https://cdn.spooky.click/beach/0.6.4/mod.js';
+
 const app = new Beach();
 app.route.static('/images', new URL('./images/', import.meta.url));
 ```
@@ -93,6 +99,8 @@ app.route.match(new RouteMatch({
 A fall back route can be added to handle the case where no routes matched.
 
 ```js
+import { Beach } from 'https://cdn.spooky.click/beach/0.6.4/mod.js';
+
 async function notFound({ html, request }) {
   return html`
     <!doctype html>

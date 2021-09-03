@@ -47,7 +47,7 @@ Deno.test('News page creates the right content', async () => {
   let response = await app.handle('/news');
   let html = await response.text();
 
-  let dom = beach.dom(html);
+  let dom = app.dom(html);
   assertEquals(dom.querySelector('h1').textContent, 'News Page');
 });
 ```
